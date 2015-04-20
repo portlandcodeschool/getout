@@ -23,7 +23,7 @@
 var config = require('./config.js');
 // instantiate the orchestrate class
 var db = require('orchestrate')(config.dbKey);
-var dbCollectionName = 'GetOnOutEvents-table3';
+var dbCollectionName = 'GetOnOutEvents-table4';
 
 // The body module handles the parsing of data 
 var parseBodyJSON = require('body/json');
@@ -63,9 +63,6 @@ updateData(res,key, singleEvent);
 // BULK ADD TEST ******************************************
 // add multiple if "m" arg is passed at command line
 console.log('command line arg is: '+ process.argv[2]);
-
-
-
 
 if (process.argv[2] === 'm') {  // args are "m" "testOutputApr191433.js"
     // setup the input array
@@ -119,27 +116,19 @@ if (process.argv[2] === 'g') {
     readOne(res, key);     
 }
 
-// TODO 
-// query function
-//
-// strategy: repurpose the function readAll(res)
-// add a query parameter that takes a lucene string
-//
 
+// QUERY TEST ******************************************
+// Get a key if "q" and "query" args are passed at command line
+if (process.argv[2] === 'q') {
+    var res;
+    var queryString = process.argv[3];
+    console.log('getting data from event for queryString = ' + queryString);
+    var queryEventResults = readQuery(res,queryString); 
+    console.log('Query results are: ');
+    console.log(queryEventResults);
+}
 
-
-
-
-//   END TEST CODE ************************
-
-
-
-
-
-
-
-
-
+//*********** END TEST CODE ************************
 
 
 
@@ -206,6 +195,22 @@ function readOne(res,key) {
     	});
 }
 
+
+//********************************************* readQuery
+function readQuery(res, query) {
+    db.search(dbCollectionName, query)
+        .then(function(results) {
+            var values = results.body;
+            console.log("Queried Data retrieved");
+            console.log(values);
+            console.log(JSON.stringify(values));
+            return(JSON.stringify(values));
+        })
+        .fail(function(err) {
+            console.log("error: " + err);
+        });
+}
+
 //********************************************* deleteData
 // DID NOT NEED The "opts" argument, just used key
 // function deleteData(res,opts) {
@@ -266,7 +271,6 @@ function generateID() {
 	}
 	return id;
 }
-
 
 
 //         CRUDfn(res, opts, body);
