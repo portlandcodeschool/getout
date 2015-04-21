@@ -1,0 +1,16 @@
+{
+  "name": "GetOutv1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server5-datastore.js",
+  "scripts": {},
+  "author": "Robert Tribbia",
+  "license": "MIT",
+  "dependencies": {
+    "orchestrate": "*",
+    "q": "^1.2.0",
+    "routes-router": "*",
+    "st": "*",
+    "xml2js": "*"
+  }
+}
