@@ -9,14 +9,14 @@ var dbCollectionName = 'eventsTable';
 
 var eventful = require('./eventful')();
 
- //updateDB();
+//updateDB();
 
 
 
 
  router.addRoute("/api/:id", {
-		//opts.params.id to access ID
-	GET:  function(req,res,opts) {
+    //opts.params.id to access ID
+  GET:  function(req,res,opts) {
       console.log("\n---Getting One---");
       whenReady(null,res,opts,readData);
   }
@@ -113,14 +113,14 @@ server.listen(3000);
 //This function is just used to create sample data file
 // function writeOutput(data) { 
 
-// 		var fs = require('fs');
-// 		fs.writeFile("output.json", data, function(err) {
-// 	    if(err) {
-// 	        return console.log(err);
-// 	    }
+//    var fs = require('fs');
+//    fs.writeFile("output.json", data, function(err) {
+//      if(err) {
+//          return console.log(err);
+//      }
 
-// 	    console.log("The file was saved!");
-// 	}); 
+//      console.log("The file was saved!");
+//  }); 
 // }
 
 
