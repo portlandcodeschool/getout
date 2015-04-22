@@ -18,7 +18,7 @@ function loadResults(date) {
 }
 
 
-console.log('run: loadResults()  to retrieve results from node.js server');
+console.log('run: loadResults(date)  to retrieve results from node.js server');
 
 
 
@@ -41,7 +41,7 @@ var eventModel = Backbone.Model.extend({
 
 var Coll = Backbone.Collection.extend({
 	model: eventModel,
-	url:'/api/2015042000',
+	url:'/api/2015042000',//IDEALLY
 /*
 	sync: function(meth,model,opts) {
 		console.log('Collection sync...');
@@ -56,12 +56,7 @@ var Coll = Backbone.Collection.extend({
 var coll = new Coll();
 
 
-console.log('list(), model.attributes, model.save(), list(), model.attributes');
-console.log('model.save(), model.fetch()');
-console.log('coll.fetch(), coll.models');
-console.log('coll.fetch({success:successFn}),');
-console.log('populate(), coll.models');
-console.log('coll.fetch()_                        ');// problem: some ids are gone!
+console.log('run  coll.fetch()   then   coll.models');
 // EXERCISE: fix it!
 // (Hint: the server is representing the object's id differently from Backbone.
 // Change the server to feed Backbone the ids it expects.)

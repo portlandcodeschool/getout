@@ -7,7 +7,7 @@ function initAPI() {
 		db: null,
 		dbCollection: null,
 		params: {
-			miRadius: '7',
+			miRadius: '3',
 			lat: '45.536500',
 			lng: '-122.648413'
 		}
@@ -37,6 +37,7 @@ function initAPI() {
 	e.pushEventsToDB = function(date, data) {
 		//key will be date!
 		console.log(date + ' events ->  DB');
+
 		this.db.put(this.dbCollection,date,data) //promise...
 			.then(function(result){
 				console.log(date + ' store SUCCESS!');
@@ -44,6 +45,8 @@ function initAPI() {
 			.fail(function(err){
 				console.log(date + ' store ERROR: ' + err);
 			});
+
+
 	}
 
 	//Query Eventful for events on cDate
@@ -100,13 +103,13 @@ function initAPI() {
 						            	console.log('(' + cDate + ') Results page ' + counter + ' of ' + total_pages + ' received');
 						                rawResults = rawResults.concat(aresults.search.events[0].event);
 										if (counter == total_pages)
-											e.pushEventsToDB(cDate, ParseResults(rawResults));				                
+											e.pushEventsToDB(cDate, ParseResults(rawResults, cDate));				                
 						            });
 						        });
 						    });
 		                }
 		            } else {
-		            	e.pushEventsToDB(cDate, ParseResults());
+		            	e.pushEventsToDB(cDate, ParseResults(rawResults, cDate));
 		            }
 	            });
 	        });
@@ -114,13 +117,16 @@ function initAPI() {
 	}
 
 	//Ran after successful query- refines results
-	function ParseResults(rawResults) {
+	function ParseResults(rawResults, cDate) {
 		finalRes = [];
 		rawResults.forEach(function (c){
+			var dArr = cDate.split('');
 			var newRes = {};
 			newRes.e_id = c.$.id;
 			newRes.lat = c.latitude[0];
 			newRes.lng = c.longitude[0];
+
+			newRes.date = dArr[0] + dArr[1] + dArr[2] + dArr[3] +'-'+ dArr[4] + dArr[5] +'-'+dArr[6] + dArr[7]; 
 			newRes.startTime = c.start_time[0].split(' ')[1];
 			newRes.startDate = c.start_time[0].split(' ')[0];
 			newRes.price = null;
