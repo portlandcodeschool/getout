@@ -1,0 +1,10 @@
+function initPage() {
+
+
+
+
+
+  
+}
+
+$(initPage);
