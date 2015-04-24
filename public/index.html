@@ -1,94 +1,30 @@
-<!doctype html>
-<html class="no-js" lang="en">
+<html>
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Get On Out</title>
-    <link rel="stylesheet" href="css/app.css" />
+    <title>Simple Map</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+      html, body, #map-canvas {
+        height: 400;
+        margin: 0px;
+        padding: 0px
+      }
+    </style>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
-    <script src="js/vendor/modernizr.js"></script>
-    <script src="js/vendor/jquery.js"></script>
-    <script src="js/foundation.min.js"></script>
-    <script type="text/javascript" src="lib/underscore-min.js"></script>  
-    <script type="text/javascript" src="lib/backbone-min.js"></script>
+    <script src="js/jquery-1.11.2.min.js"></script>
+    <script src="http://underscorejs.org/underscore.js"></script>
+    <script src="http://backbonejs.org/backbone-min.js"></script>
+    <script src="js/mapping.js"></script>
+    <script>console.log('sdfdd');</script>
 
-    <script type="text/javascript" src="js/mapping.js"></script>
- <script>
-
-
-
- </script>
-    
   </head>
   <body>
-    
-
-    <div class="row bottom-bord">
-      <div class="large-12 columns">
-        <h1>Get On Out!</h1>
-      </div>
-    </div>
-    
-    <div class="row">
-      <div class="large-12 columns nopad">
-
-           <script id="infoWindow-template" type="text/html">
-              <h2><%=title %></h2>
-              <a href=<%=venueUrl %>><%=venueName %></a>
-              <p>Latitude: <%=lat %></p>
-              <p>Longitude: <%=lng %></p>
-          </script>
-          <div id="map-canvas" style="height:600px; width: 600px;"></div>
-          
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="large-12 columns">
-           
-        <hr />
-                
-        <h5>Find an event and Get On Out!</h5>
-        <form>
-          <div class="row">
-            <div class="large-4 medium-4 columns">
-              <label>Select Date</label>
-              <select>
-                <option value="husker">April 15th</option>
-                <option value="starbuck">April 16th</option>
-                <option value="hotdog">April 17th</option>
-                <option value="apollo">April 18th</option>
-              </select>
-            </div>
-            <div class="large-4 medium-4 columns">
-              <label>Select Event Type</label>
-              <select>
-                <option value="husker">Live Music</option>
-                <option value="starbuck">DJ Music</option>
-                <option value="hotdog">Theater</option>
-                <option value="apollo">Dog show</option>
-              </select>
-            </div>
-            <div class="large-4 medium-4 columns">
-              <label>Select Radius</label>
-              <select>
-                <option value="husker">5 miles</option>
-                <option value="starbuck">10 miles</option>
-                <option value="hotdog">15 miles</option>
-                <option value="apollo">20 miles</option>
-              </select>
-            </div>
-          </div>
-          <div class="row">
-            <div class="large-12 columns">
-              <a href="#" class="button">Get Out</a>
-            </div>
-          </div>
-        </form>
-      </div>     
-    </div>
-
-    
-    <script src="js/app.js"></script>
+    <div id="map-canvas"></div>
+    <select id="date" onChange="dateSelect();">
+      <option value="2015042000">Monday, April 20th 2015</option>
+      <option value="2015042100">Tuesday, April 21st 2015</option>
+      <option value="2015042200">Wednesday, April 22nd 2015</option>
+      <option value="2015042300">Thursday, April 23rd 2015</option>
+</select>
   </body>
 </html>
