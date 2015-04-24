@@ -1,3 +1,5 @@
+var app = {};
+
 app.templates = {};
 
 app.templates.main = _.template(
