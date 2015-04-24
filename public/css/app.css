@@ -1,8 +1,25 @@
 /* Custom css (add to Foundation styles) */
 
-/* Temporary map border and size */
 #map_canvas {
   height: 600px;
-  border: 1px solid red;
 }
 
+.row {
+  max-width: 100%;
+}
+
+iframe {
+  width: -webkit-filter: 100%;
+  width: -moz-filter: 100%;
+  width: -ms-filter: 100%;
+  width: -o-filter: 100%;
+  filter: 100%;
+}
+
+.nopad {
+  padding: 0;
+}
+
+.bottom-bord {
+  border-bottom: gray;
+}

@@ -1,0 +1,96 @@
+<!-- Thursday April 23 - HTML content and code -->
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Get On Out | Find an event near you</title>
+    <link rel="stylesheet" href="css/foundation.css"/>
+    <!-- Some Foundation styles depend on normalize to fix browser quirks-->
+    <link rel="stylesheet" href="css/normalize.css"/>
+    <!-- Custom css styles in app.css -->
+    <link rel="stylesheet" href="css/app.css"/>
+    <script src="js/vendor/modernizr.js"></script>
+  </head>
+  <body>
+    <div id="mainContent">
+      <div id="header"></div>
+      <div id="mainMap"></div>
+      <div id="footerForm"></div>
+      <div id="footerSubmit"></div>
+    </div>
+    <!-- All code starting here to be replaced by Backbone views -->
+    <div id="header" class="row bottom-bord">
+      <div class="large-12 medium-12 columns">
+        <h1>Get On Out</h1>
+      </div>
+    </div>
+    
+    <div id="mainMap" class="row">
+      <div class="large-12 columns nopad">
+      	<div id="map_canvas"></div>
+      </div>
+    </div>
+
+    <div id="footerForm" class="row">
+      <div class="large-12 columns">
+        <hr />
+              
+        <h5>Find an event and Get On Out!</h5>
+        <form>
+				  <div class="row">
+				    <div class="large-4 medium-4 columns">
+				      <label>Select a date</label>
+				      <select>
+				        <option value="today">Today</option>
+				        <option value="tomorrow">Tomorrow</option>
+				        <option value="friday">Friday</option>
+				      </select>
+				    </div>
+				    <div class="large-4 medium-4 columns">
+              <label>Select type of event</label>
+              <select>
+                <option value="performance">Performing Arts</option>
+                <option value="concert">Concerts &amp; Tour Dates</option>
+                <option value="art">Art Galleries &amp; Exhibits</option>
+                <option value="sport">Sports</option>
+                <option value="outdoor">Outdoors &amp; Recreation</option>
+                <option value="family">Kids &amp; Family</option>
+                <option value="health">Health &amp; Wellness</option>
+                <option value="education">Education</option>
+              </select>
+            </div>
+            <div class="large-4 medium-4 columns">
+              <label>Select a radius on the map</label>
+              <select>
+                <option value="2miles">2 miles</option>
+                <option value="5miles">5 miles</option>
+                <option value="10miles">10 miles</option>
+                <option value="15miles">15 miles</option>
+              </select>
+            </div>
+          </div>
+				</form>
+      </div>     
+    </div>
+
+    <div id="footerSubmit" class="row">
+      <div class="large-12 columns">
+			  <p>
+          <a href="#" class="goButton small radius button">Get On Out</a>
+        </p>           
+      </div>
+    </div>
+
+    <!-- End of Backbone views -->
+
+    <!-- JavaScript dependencies -->
+    <script src="js/vendor/jquery.js"></script>
+    <script src="js/foundation.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.2/underscore-min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js"></script>
+    <!-- Backbone views, models, and collections -->
+    <script type="text/javascript" src="js/views.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+  </body>
+</html>
