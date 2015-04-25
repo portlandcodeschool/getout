@@ -9,7 +9,8 @@ var dbCollectionName = 'eventsTable';
 
 var eventful = require('./modules/eventful')();
 
-//updateDB();
+ //want to update DB?
+ //updateDB();
 
 
 
@@ -103,7 +104,7 @@ function readOne(res,key) {
 
 function updateDB() {
   eventful.dbConfig('e88f176f-2c79-4488-a349-718120a5ceda', 'eventsTable');
-  eventful.updateDB(7);
+  eventful.updateDB(8);
 }
  
 var server = http.createServer(router);

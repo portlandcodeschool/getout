@@ -7,7 +7,7 @@ function initAPI() {
 		db: null,
 		dbCollection: null,
 		params: {
-			miRadius: '3',
+			miRadius: '7',
 			lat: '45.536500',
 			lng: '-122.648413'
 		}
@@ -115,7 +115,22 @@ function initAPI() {
 	        });
 	    });	
 	}
+	function tConvert (time) { //Function for translating 24h to 12h
+		var tArr = time.split(':');
+		tArr[0] = Number(tArr[0]);
+		var m = 'AM';
+		if (tArr[0] == '00')
+			return 'ALL DAY';
 
+		if (tArr[0] > 11) {
+			m = 'PM';
+			if (tArr[0] > 12)
+				tArr[0] = tArr[0] - 12;
+		}
+		var mins = ((tArr[1].toString().length == 1) ? (tArr[1] + '0') : (tArr[1]));
+		return tArr[0] + ':' + mins + ' ' + m;
+
+	}
 	//Ran after successful query- refines results
 	function ParseResults(rawResults, cDate) {
 		finalRes = [];
@@ -127,7 +142,7 @@ function initAPI() {
 			newRes.lng = c.longitude[0];
 
 			newRes.date = dArr[0] + dArr[1] + dArr[2] + dArr[3] +'-'+ dArr[4] + dArr[5] +'-'+dArr[6] + dArr[7]; 
-			newRes.startTime = c.start_time[0].split(' ')[1];
+			newRes.startTime = tConvert(c.start_time[0].split(' ')[1]);
 			newRes.startDate = c.start_time[0].split(' ')[0];
 			newRes.price = null;
 			newRes.title = c.title[0];
@@ -152,13 +167,7 @@ function initAPI() {
 			if (c.price[0] != "")
 				newRes.price = c.price[0];	
 
-			// var dupe = false;
-			// finalRes.forEach(function(x) {
-			// 	if (x.id == newRes.id)
-			// 		dupe = true;
-			// });
-			// if (!dupe)
-				finalRes.push(newRes);	
+			finalRes.push(newRes);	
 		});
 		return {events: finalRes};
 	}

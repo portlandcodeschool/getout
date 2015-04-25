@@ -3,8 +3,6 @@
     <title>Simple Map</title>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600,300,700' rel='stylesheet' type='text/css'>
-    <link href="css/app.css" type="text/css" rel='stylesheet'>
     <style>
       html, body, #map-canvas {
         height: 400;
@@ -18,18 +16,27 @@
     <script src="http://backbonejs.org/backbone-min.js"></script>
     <script src="js/dateFormat.js"></script>
     <script src="js/mapping.js"></script>
-    <script src="js/views.js"></script>
-    <script src="js/templates.js"></script>
     <script>console.log('sdfdd');</script>
 
   </head>
   <body>
-    <div id="mainContent"></div>
-    <div id="header"></div>
     <div id="map-canvas"></div>
-    <div id="datePicker"></div>
-    <div id="eventList"></div>
-    <script>$(dateSelect);</script>
+
+
+"<select id="date" onChange="dateSelect()">
+  <option value="2015042400">Friday, April 24th, 2015</option>
+  <option value="2015042500">Saturday, April 25th, 2015</option>
+  <option value="2015042600">Sunday, April 26th, 2015</option>
+  <option value="2015042700">Monday, April 27th, 2015</option>
+  <option value="2015042800">Tuesday, April 28th, 2015</option>
+  <option value="2015042900">Wednesday, April 29th, 2015</option>
+  <option value="2015043000">Thursday, April 30th, 2015</option>
+  <option value="2015050100">Friday, May 1st, 2015</option>
+</select>
+
+
+
+
   </body>
 </html>
 

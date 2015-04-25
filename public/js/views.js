@@ -1,34 +1,45 @@
-var app = {};
-
-var SubView = Backbone.View.extend({
-  initialize: function() {
-  },
-  render: function() {
-  }
-});
-
-
-var MainView = Backbone.View.extend({
+var HeaderView = Backbone.View.extend({
   el: '#mainContent',
-
-
-  initialize: function() {
-    this.headerView = new SubView({el:"#header"});
-    this.mapView = new SubView({el:"#mainMap"});
-    this.footerView = new SubView({el:"#footerForm"});
-    this.submitView = new SubView({el:"#footerSubmit"})
-  },
   render: function() {
-    var test = this.$el.html();
-    test = this.$el.html('Print out something');
+    console.log('your header has loaded');
+
+    this.$el.html(app.templates.header({}));
+    
   }
-
-
 });
 
-var mainView;
-function go() {
-  mainView = new MainView();
-};
 
-$(go);
+var DatePickerView = Backbone.View.extend({
+  el: '#datePicker',
+  render: function() {
+    console.log('your datepicker has loaded');
+
+    this.$el.html(app.templates.datePicker());
+    
+  }
+});
+
+var EventListView = Backbone.View.extend({
+  el: '#eventList',
+  render: function() {
+    console.log('your event list has loaded');
+
+    this.$el.html(app.templates.eventList());
+    
+  }
+});
+
+$(function () {
+  app.headerView = new HeaderView({});
+  app.datePickerView = new DatePickerView({});
+  app.eventListView = new EventListView({});
+
+  app.headerView.render();
+  app.datePickerView.render();
+  app.eventListView.render();
+});
+
+
+
+
+var app = {};

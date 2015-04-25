@@ -3,9 +3,20 @@
 #map_canvas {
   height: 600px;
 }
+body {
+	font-family: 'Open Sans', sans-serif;
+}
 
 .row {
   max-width: 100%;
+}
+.large-12.columns {
+	width: 100%;
+	max-width: 1200px;
+	margin: auto;
+}
+.large-6.medium-6.columns {
+	width: 50%;
 }
 
 iframe {

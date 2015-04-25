@@ -1,5 +1,4 @@
-var lat = 45.536500;
-var lng = -122.648413;
+
  
 var eventfulRes = {}; // will become duck object retrieved from server
  

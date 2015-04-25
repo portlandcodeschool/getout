@@ -2,8 +2,8 @@
   "name": "GetOutv1",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
-  "scripts": {server.js},
+  "main": "server5-datastore.js",
+  "scripts": {},
   "author": "Robert Tribbia",
   "license": "MIT",
   "dependencies": {
