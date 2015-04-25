@@ -1,7 +1,9 @@
+var app = {};
+
 app.templates = {};
 
-app.templates.main = _.template(
-  //#header
+//#header
+app.templates.header = _.template(
   '<div class="large-12 medium-12 columns">' + '<h1>Get On Out</h1>' + '</div>');
 
 // #mainMap
@@ -12,14 +14,11 @@ app.templates.map = _.template(
 app.templates.footerForm = _.template(
   '<div class="large-12 columns">' + '<hr />' + '<h5>Find an event and get on out!</h5>' + '<form>' + 
 
-  '<div class="row">' + '<div class="large-4 medium-4 columns">' + '</div>' 
-  + '<label>Select a date</label>' + '<select>' + '<option value="date"><%= Date %></option>' + '</select>' + '</div>' + 
-
-  '<div class="row">' + '<div class="large-4 medium-4 columns">' + '</div>' 
-  + '<label>Select type of event</label>' + '<select>' + '<option value="activity"><%= Activity %></option>' + '</select>' + '</div>'
-
-
-   + '</form>' + '</div>');
+  '<div class="row">' + 
+  '<div class="large-4 medium-4 columns">' + '<label>Select a date</label>' + '<select>' + '<option value="date"><%= Date %></option>' + '</select>' + '</div>' + 
+  '<div class="large-4 medium-4 columns">' + '<label>Select type of event</label>' + '<select>' + '<option value="activity"><%= Activity %></option>' + '</select>' + '</div>' + 
+  '<div class="large-4 medium-4 columns">' + '<label>Select a radius on the map</label>' + '<select>' + '<option value="distance"><%=  Distance %></option>' + '</select>' + '</div>' + 
+  '</form>' + '</div>');
 
 app.templates.dateItem = _.template(
   '<option value="date"><%= Date %></option>');
