@@ -26,15 +26,16 @@ google.maps.event.addDomListener(window, 'load', initialize);
 // Google Maps API functions (mostly marker stuff)
 //----------------------------
 
-function addMarker(lat,lng,desc) {
+function addMarker(lat,lng,desc,icon) {
 	var infowindow = new google.maps.InfoWindow({
 		content: desc
 	});
 
 	var marker = new google.maps.Marker({
 		position: new google.maps.LatLng(lat, lng),
-		animation: google.maps.Animation.DROP,
-		map: map
+		//animation: google.maps.Animation.DROP,
+		map: map,
+		icon: icon
 	});
 
 	markerArray.push(marker);
@@ -104,12 +105,21 @@ function dateSelect() {
 	var selected = $('#date').val();
 	var fetchParam = { 
 		reset: true,
-		data: $.param({ date: selected}),
+		data: $.param({ date: selected}), //ripped from SO
 		success: fetchSuccess,
 		error: fetchError
 	}
 	coll.fetch(fetchParam);
 }
+
+
+coll.models.forEach(function (m) {   
+
+
+
+
+
+	});
 
 
 

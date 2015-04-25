@@ -1,0 +1,32 @@
+<html>
+  <head>
+    <title>Simple Map</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+      html, body, #map-canvas {
+        height: 400;
+        margin: 0px;
+        padding: 0px
+      }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+    <script src="js/jquery-1.11.2.min.js"></script>
+    <script src="http://underscorejs.org/underscore.js"></script>
+    <script src="http://backbonejs.org/backbone-min.js"></script>
+    <script src="js/mapping.js"></script>
+    <script>console.log('sdfdd');</script>
+
+  </head>
+  <body>
+    <div id="map-canvas"></div>
+    <select id="date" onChange="dateSelect();">
+      <option value="2015042000">Monday, April 20th 2015</option>
+      <option value="2015042100">Tuesday, April 21st 2015</option>
+      <option value="2015042200">Wednesday, April 22nd 2015</option>
+      <option value="2015042300">Thursday, April 23rd 2015</option>
+</select>
+  </body>
+</html>
+
+
