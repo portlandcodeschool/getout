@@ -1,5 +1,5 @@
 var HeaderView = Backbone.View.extend({
-  el: '#mainContent',
+  el: '#header',
   render: function() {
     console.log('your header has loaded');
 
