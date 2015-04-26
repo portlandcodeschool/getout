@@ -108,8 +108,8 @@ function updateDB() {
 }
  
 var server = http.createServer(router);
-console.log('server listening on port # 3000');
-server.listen(3000);
+console.log('server listening on port # ' + process.env.PORT);
+server.listen(process.env.PORT);
 
 
 //This function is just used to create sample data file
