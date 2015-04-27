@@ -1,0 +1,11 @@
+html, 
+body, 
+#map-canvas {
+    height: 400;
+    margin: 0px;
+    padding: 0px
+ }
+.row {
+	margin-left: 0;
+	margin-right: 0;
+}
