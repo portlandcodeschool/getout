@@ -31,7 +31,7 @@ function addMarker(lat,lng,desc,img) {
 		content: desc
 	});
 
-	var iconM = (img) ? ('icons/' + img) : null;
+	var iconM = (img) ? ('icons/' + img) : ('icons/default.png');
 	var marker = new google.maps.Marker({
 		position: new google.maps.LatLng(lat, lng),
 		//animation: google.maps.Animation.DROP,
@@ -175,16 +175,16 @@ function generateOptions(days) {
 
 function matchIcon(m) {
 	var imgPairs = {
-		"education" : "education.png",
+		"education" : "schools.png",
 		"food &amp; wine" : "food.png",
-		"art galleries &amp; exhibits" : "art.jpg",
-		"museums &amp; attractions" : "museum.png",
-		"concerts &amp; tour dates" : "concert.png",
+		"art galleries &amp; exhibits" : "exhibitions.png",
+		"museums &amp; attractions" : "museums.png",
+		"concerts &amp; tour dates" : "concerts.png",
 		"sports": "sports.png",
-		"performing arts" : "performing.png",
-		"kids &amp; family" : "family.png",
-		"outdoors &amp; recreation" : "outdoor.png",
-		"health &amp; wellness" : "wellness.png"
+		"performing arts" : "entertainment.png",
+		"kids &amp; family" : "meetups.png",
+		"outdoors &amp; recreation" : "festivals.png",
+		"health &amp; wellness" : "games.png"
 	}
 	var cArr = m.attributes.categories.map(function (f) { return f.toLowerCase();});
 
