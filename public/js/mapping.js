@@ -68,10 +68,12 @@ var eventModel = Backbone.Model.extend({
 	visible: false,
 	renderToMap: function() {
 		this.visible = true;
-		var desc = '<h1>' + this.attributes.title + '</h1>';
+		var desc = '<h3>' + this.attributes.title + '</h3>';
 		desc+= '<br><strong>Time: </strong>' + this.attributes.startTime;
-		desc+= '<br><strong>Venue: </strong>' + this.attributes.venueName;
-		desc+= '<br><a href="' + this.attributes.url + '" target="blank">More details ...';
+		desc+= '<br><strong>Date: </strong>' + this.attributes.date;
+		desc+= '<br><br><strong>Venue: </strong>' + this.attributes.venueName;
+		desc+= '<br><strong>Address: </strong>' + this.attributes.venueAddress;
+		desc+= '<br><br><a href="' + this.attributes.url + '" target="blank">More details ...';
 		addMarker(this.attributes.lat, this.attributes.lng,desc, matchIcon(this));
 	}
 });
@@ -184,8 +186,26 @@ function matchIcon(m) {
 		"performing arts" : "entertainment.png",
 		"kids &amp; family" : "meetups.png",
 		"outdoors &amp; recreation" : "festivals.png",
-		"health &amp; wellness" : "games.png"
+		"health &amp; wellness" : "swimming-pools.png",
+
+		"other &amp; miscellaneous" : "default.png",
+		"neighborhood" : "residential-places.png",
+		"university &amp; alumni" : "schools.png",
+		"holiday" : "parks.png",
+		"pets" : "pets.png",
+		"fundraising &amp; charity" : "tickets.png",
+		"sales &amp; retail" : "shopping.png",
+		"nightlife &amp; singles" : "bars.png",
+		"conferences &amp; tradeshows" : "internet.png",
+		"literary &amp; books" : "magazines.png",
+		"business &amp; networking" : "internet.png",
+		"film" : "movies.png",
+		"festivals" : "playgrounds.png",
+		"comedy" : "karaoke.png",
+		"technology" : "computers.png"
 	}
+
+
 	var cArr = m.attributes.categories.map(function (f) { return f.toLowerCase();});
 
 	for (var i = 0; i < cArr.length; i++) {
@@ -213,6 +233,19 @@ function getTableRows() {
 	return html;
 
 }
+
+
+// var cats = [];
+// coll.models.forEach(function (c) {
+
+// 	c.attributes.categories.forEach(function (f) {
+// 		var cat = f.toLowerCase();
+// 		if (cats.indexOf(cat) == -1) {
+// 			cats.push(cat);
+// 		}
+// 	});
+// });
+
 
 
 
