@@ -2,7 +2,7 @@ var map;
 
 var lat = 45.536500;
 var lng = -122.648413;
-var markerArray = []; //stores Markers. When we wipe the map, we empty this array
+//var markerArray = []; //stores Markers. When we wipe the map, we empty this array
 var infoWindow = null;
 
 
@@ -20,7 +20,7 @@ var mapStyles = [
 	  ]
 	}
 ]
-console.log('STYLES ADDED!');
+console.log('___PDATES');
 //----------------------------
 // Google Maps API code
 //----------------------------
@@ -50,33 +50,20 @@ function addMarker(lat,lng,desc,img) {
 	var iconM = (img) ? ('icons/' + img) : ('icons/default.png');
 	var marker = new google.maps.Marker({
 		position: new google.maps.LatLng(lat, lng),
-		//animation: google.maps.Animation.DROP,
 		map: map,
-		//icon: 'icons/' + img
 		icon: iconM,
 		desc: desc
-		//
 	});
 
-	//if (img)
-
-
-	markerArray.push(marker);
 	google.maps.event.addListener(marker, 'click', function() {
 		infoWindow.setContent(marker.desc);
-		//console.log('info: ' + infoWindow.desc);
-		//console.log('marker: ' + marker.desc);
 		infoWindow.open(map,marker);
 	});
+
+	return marker;
 }
 
-function clearMapMarkers() {
-	markerArray.forEach(function (m) {
-		m.setMap(null);
-	})
-	markerArray = [];
 
-}
 
 //----------------------------
 // BackBone Stuff
@@ -85,27 +72,49 @@ function clearMapMarkers() {
 
 //Event backbone model. Has 'renderToMap' function which just adds a marker to map.
 var eventModel = Backbone.Model.extend({
-	visible: false,
-	renderToMap: function() {
-		this.visible = true;
+	initialize: function() {
+		this.set('visible',true);
+		this.myView = new eventView({model: this});
+
 		var desc = '<h3>' + this.attributes.title + '</h3>';
 		desc+= '<br><strong>Time: </strong>' + this.attributes.startTime;
 		desc+= '<br><strong>Date: </strong>' + this.attributes.date;
 		desc+= '<br><br><strong>Venue: </strong>' + this.attributes.venueName;
 		desc+= '<br><strong>Address: </strong>' + this.attributes.venueAddress;
-		desc+= '<br><br><a href="' + this.attributes.url + '" target="blank">More details ...';
-		addMarker(this.attributes.lat, this.attributes.lng,desc, matchIcon(this));
+		desc+= '<br><br><a href="' + this.attributes.url + '" target="blank">More details ...</a>';
+		this.set('marker', addMarker(this.attributes.lat, this.attributes.lng,desc, matchIcon(this)));
 	}
 });
+
+
+var eventView = Backbone.View.extend({
+	//el: Table row in list
+	initialize: function() {
+		this.model.on('change:visible', this.updateVis, this);
+	},
+	updateVis: function() {
+		if (this.model.attributes.visible) {
+			this.model.attributes.marker.setMap(map);
+		} else {
+			this.model.attributes.marker.setMap(null);
+		}
+	}
+});
+
 
 //Collection that holds markers.  pulls from server with .fetch() call in dateSelect function *below*
 var EventCollection = Backbone.Collection.extend({
 	model: eventModel,
 	url:'/api',
-	renderAll: function() {
-		clearMapMarkers();
-		this.each(function(m,i) {
-			m.renderToMap();
+	hideAll: function() {
+		this.each(function (m) {
+			m.set('visible', false);
+		});
+
+	},
+	showAll: function() {
+		this.each(function (m) {
+			m.set('visible', true);
 		});
 		console.log('markers placed on map..');
 	}
@@ -116,7 +125,6 @@ var EventCollection = Backbone.Collection.extend({
 
 function fetchSuccess(coll, res, opts) {
 	console.log($('#date').val() + ' EVENTS SUCCESSFULLY RECEIVED: ');
-	coll.renderAll();
 
 }
 
@@ -139,20 +147,16 @@ function dateSelect() {
 		success: fetchSuccess,
 		error: fetchError
 	}
+	coll.hideAll();
 	coll.fetch(fetchParam);
 }
 
-console.log('find cats')
 function getCats() {
 	var arr = [];
 	coll.models.forEach(function (m) {   
-
 		m.attributes.categories.forEach(function (c) {
 			arr.push(c.toLowerCase());
-
-
 		})
-
 	});
 
 	return arr;
@@ -207,7 +211,6 @@ function matchIcon(m) {
 		"kids &amp; family" : "meetups.png",
 		"outdoors &amp; recreation" : "festivals.png",
 		"health &amp; wellness" : "swimming-pools.png",
-
 		"other &amp; miscellaneous" : "default.png",
 		"neighborhood" : "residential-places.png",
 		"university &amp; alumni" : "schools.png",
