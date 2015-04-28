@@ -3,8 +3,24 @@ var map;
 var lat = 45.536500;
 var lng = -122.648413;
 var markerArray = []; //stores Markers. When we wipe the map, we empty this array
+var infoWindow = null;
 
 
+var mapStyles = [
+	{
+	  "elementType": "geometry.fill",
+	  "stylers": [
+	    { "hue": "#00e5ff" },
+	    { "saturation": -14 }
+	  ]
+	},{
+	  "featureType": "road",
+	  "stylers": [
+	    { "hue": "#00d4ff" }
+	  ]
+	}
+]
+console.log('STYLES ADDED!');
 //----------------------------
 // Google Maps API code
 //----------------------------
@@ -18,6 +34,10 @@ function initialize() {
   };
   map = new google.maps.Map(document.getElementById('map-canvas'),
       mapOptions);
+
+  map.setOptions({styles: mapStyles});
+
+  infoWindow = new google.maps.InfoWindow();
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
@@ -25,11 +45,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
 //----------------------------
 // Google Maps API functions (mostly marker stuff)
 //----------------------------
-console.log('icon updddddate');
 function addMarker(lat,lng,desc,img) {
-	var infowindow = new google.maps.InfoWindow({
-		content: desc
-	});
 
 	var iconM = (img) ? ('icons/' + img) : ('icons/default.png');
 	var marker = new google.maps.Marker({
@@ -37,7 +53,8 @@ function addMarker(lat,lng,desc,img) {
 		//animation: google.maps.Animation.DROP,
 		map: map,
 		//icon: 'icons/' + img
-		icon: iconM
+		icon: iconM,
+		desc: desc
 		//
 	});
 
@@ -46,7 +63,10 @@ function addMarker(lat,lng,desc,img) {
 
 	markerArray.push(marker);
 	google.maps.event.addListener(marker, 'click', function() {
-		infowindow.open(map,marker);
+		infoWindow.setContent(marker.desc);
+		//console.log('info: ' + infoWindow.desc);
+		//console.log('marker: ' + marker.desc);
+		infoWindow.open(map,marker);
 	});
 }
 
