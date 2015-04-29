@@ -15,11 +15,13 @@ app.templates.datePicker = _.template(
 	  '<label>Select a date</label>' + generateOptions(7) + 
 	  '<div class=".col-xs-12 .col-sm-6 .col-lg-12">' + 
 	  	  '<label>Select type of event</label>' + 
-		  '<select>' + 
-		  	  '<option value="activity">Live Music</option>' +
-			  '<option value="activity">DJ Music</option>' +
-			  '<option value="activity">Theater</option>' +
-			  '<option value="activity">Comedy</option>' + 
+		  '<select id="categorySelect" onChange="applyFilter()">' + 
+		  	  '<option value="9">Show All</option>' +
+		  	  '<option value="0">Performances</option>' +
+			  '<option value="1">Group Events</option>' +
+			  '<option value="2">Learning</option>' +
+			  '<option value="3">Sports</option>' +
+			  '<option value="4">Other</option>' + 
 		  '</select>' + 
 		 '</div>' + 
 	  '</form>' + 

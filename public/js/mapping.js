@@ -20,7 +20,7 @@ var mapStyles = [
 	  ]
 	}
 ]
-console.log('___PDATES');
+console.log('ee4dddd');
 //----------------------------
 // Google Maps API code
 //----------------------------
@@ -106,6 +106,11 @@ var eventView = Backbone.View.extend({
 var EventCollection = Backbone.Collection.extend({
 	model: eventModel,
 	url:'/api',
+	catGroupings: [["art galleries &amp; exhibits", "museums &amp; attractions", "concerts &amp; tour dates", "performing arts", "nightlife &amp; singles", "film", "festivals", "comedy"],
+    				  ["food &amp; wine", "neighborhood", "university &amp; alumni", "holiday"],
+    				  ["education", "conferences &amp; tradeshows", "literary &amp; books", "business &amp; networking", "technology"],
+    				  ["sports", "outdoors &amp; recreation", "kids &amp; family", "health &amp; wellness"],
+    				  ["other &amp; miscellaneous", "pets", "fundraising &amp; charity", "sales &amp; retail"]],
 	hideAll: function() {
 		this.each(function (m) {
 			m.set('visible', false);
@@ -117,8 +122,24 @@ var EventCollection = Backbone.Collection.extend({
 			m.set('visible', true);
 		});
 		console.log('markers placed on map..');
+	},
+	filterEvents: function(catNum) {
+		if (catNum == 9) {
+			this.showAll();
+			return true;
+		}
+		this.hideAll();
+		var catArray = this.catGroupings;
+		this.each(function (m) {
+			var ar = m.attributes.categories.map(function (z) { return z.toLowerCase(); });
+			for (var i = 0; i < ar.length; i++) {
+				if (catArray[catNum].indexOf(ar[i]) > -1) {
+					m.set('visible', true);
+					break;
+				}
+			}
+		});
 	}
-
 });
 
 
@@ -185,7 +206,11 @@ function getOptionsArray(dayCount) {
 
 }
 
+function applyFilter() {
+	var selected = Number($('#categorySelect').val());
+	coll.filterEvents(selected);
 
+}
 
 function generateOptions(days) {
 	var optsArr = getOptionsArray(days);
@@ -199,35 +224,64 @@ function generateOptions(days) {
 
 }
 
-function matchIcon(m) {
-	var imgPairs = {
-		"education" : "schools.png",
-		"food &amp; wine" : "food.png",
-		"art galleries &amp; exhibits" : "exhibitions.png",
-		"museums &amp; attractions" : "museums.png",
-		"concerts &amp; tour dates" : "concerts.png",
-		"sports": "sports.png",
-		"performing arts" : "entertainment.png",
-		"kids &amp; family" : "meetups.png",
-		"outdoors &amp; recreation" : "festivals.png",
-		"health &amp; wellness" : "swimming-pools.png",
-		"other &amp; miscellaneous" : "default.png",
-		"neighborhood" : "residential-places.png",
-		"university &amp; alumni" : "schools.png",
-		"holiday" : "parks.png",
-		"pets" : "pets.png",
-		"fundraising &amp; charity" : "tickets.png",
-		"sales &amp; retail" : "shopping.png",
-		"nightlife &amp; singles" : "bars.png",
-		"conferences &amp; tradeshows" : "internet.png",
-		"literary &amp; books" : "magazines.png",
-		"business &amp; networking" : "internet.png",
-		"film" : "movies.png",
-		"festivals" : "playgrounds.png",
-		"comedy" : "karaoke.png",
-		"technology" : "computers.png"
-	}
 
+function gar(o) {
+	var r = [];
+	for (var key in o) {
+
+		r.push(key);
+
+	}
+	return r;
+}
+
+function matchIcon(m) {
+var imgPairs = {
+
+
+
+    "art galleries &amp; exhibits": "exhibitions.png",
+    "museums &amp; attractions": "museums.png",
+    "concerts &amp; tour dates": "concerts.png",
+    "performing arts": "entertainment.png",
+    "nightlife &amp; singles": "bars.png",
+    "film": "movies.png",
+    "festivals": "playgrounds.png",
+    "comedy": "karaoke.png",
+
+    // Grouup Events ["food &amp; wine", "neighborhood", "university &amp; alumni", "holiday"]
+    "food &amp; wine": "food.png",
+    "neighborhood": "residential-places.png",
+    "university &amp; alumni": "schools.png",
+    "holiday": "parks.png",
+
+    // Learning ["education", "conferences &amp; tradeshows", "literary &amp; books", "business &amp; networking", "technology"]
+    "education": "schools.png",
+    "conferences &amp; tradeshows": "internet.png",
+    "literary &amp; books": "magazines.png",
+    "business &amp; networking": "internet.png",
+    "technology": "computers.png",
+
+    //SPORTS ["sports", "outdoors &amp; recreation", "kids &amp; family", "health &amp; wellness"]
+    "sports": "sports.png",
+    "outdoors &amp; recreation": "festivals.png",
+    "kids &amp; family": "meetups.png",
+    "health &amp; wellness": "swimming-pools.png",
+
+    // Other ["other &amp; miscellaneous", "pets", "fundraising &amp; charity", "sales &amp; retail"]
+    "other &amp; miscellaneous": "default.png",
+    "pets": "pets.png",
+    "fundraising &amp; charity": "tickets.png",
+    "sales &amp; retail": "shopping.png"
+};
+// for (var key in imgPairs) {
+// 	var str = key.replace('&amp;','&');
+// 	var arr = str.split(' ');
+// 	arr.map(function (f) { 
+// 		var item = 
+
+// 	 })
+// }
 
 	var cArr = m.attributes.categories.map(function (f) { return f.toLowerCase();});
 
