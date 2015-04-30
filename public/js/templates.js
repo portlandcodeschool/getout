@@ -6,15 +6,16 @@ app.templates = {};
 
 //#header
 app.templates.header = _.template(
-  '<div class=""><h1>Get On Out</h1></div>');
+  '<div class="logo"><img src="img/gologo.png" width="90" height="90"></div>');
 
 // #datePicker
 app.templates.datePicker = _.template(
-  '<h5>Find an event and get on out!</h5>' + 
-  '<div class="row">' + 
-	  '<label>Select a date</label>' + generateOptions(7) + 
-	  '<div class=".col-xs-12 .col-sm-6 .col-lg-12">' + 
-	  	  '<label>Select type of event</label>' + 
+  '<div class="row inputs">' + 
+  	  '<div class="field-one">' +
+	  		'<div class="when">When Do You Want to Get Out?</div>' + generateOptions(7) +
+	  '</div>' +
+	  '<div class="field-two">' + 
+	  	  '<div class="what">What Do You Want to Do?</div>' + 
 		  '<select id="categorySelect" onChange="applyFilter()">' + 
 		  	  '<option value="9">Show All</option>' +
 		  	  '<option value="0">Performances</option>' +
@@ -23,11 +24,14 @@ app.templates.datePicker = _.template(
 			  '<option value="3">Sports</option>' +
 			  '<option value="4">Other</option>' + 
 		  '</select>' + 
-		 '</div>' + 
-	  '</form>' + 
+	  '</div>' + 
+	  '<div class="search">' +
+	  	'<div class="lookin">Search Events</div>' +
+	  	'<input type="text" id="searchBox" placeholder="Get Out">' + 
+	  '</div>' + 
   '</div>');
 
 // #eventList
 app.templates.eventList = _.template(
-  '<div class="large-12 columns"></div>'
+  '<div id="sorts"></div>'
 );

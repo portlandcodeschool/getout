@@ -4,6 +4,7 @@
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600,300,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
     <link href="css/bootstrap.min.css" type="text/css" rel='stylesheet'>
     <link href="css/style.css" type="text/css" rel='stylesheet'>
     
@@ -16,24 +17,23 @@
     <script src="js/mapping.js"></script>
     <script src="js/views.js"></script>
     <script src="js/templates.js"></script>
+    <script src="js/vendor/isotope.min.js"></script>
+    <script src="js/list-sort.js"></script>
     <script>console.log('sdfdd');</script>
 
   </head>
   <body>
-    <div class="row">
+    <div class="row top">
         <div id="header"></div>
-    </div>
-    <div class="row">
-        <div id="map-canvas"></div>
-    </div>
-    <div class="row">
         <div id="datePicker"></div>
     </div>
     <div class="row">
         <div id="sideDisplay">
-            Search: <input type="text" id="searchBox"><br>
             <div id="eventList" class="eventListBox"></div>
         </div>
+    </div>
+    <div class="row">
+        <div id="map-canvas"></div>
     </div>
     <script>$(init);</script>
   </body>
