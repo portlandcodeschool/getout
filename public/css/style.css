@@ -62,9 +62,9 @@ body,
 	height: 100%;
 	width: 350px;
 	margin-left: 15px;
-	-webkit-box-shadow: 0px 1px 13px 3px rgba(0,0,0,0.9);
-	-moz-box-shadow: 0px 1px 13px 3px rgba(0,0,0,0.9);
-	box-shadow: 0px 1px 13px 3px rgba(0,0,0,0.9);
+	-webkit-box-shadow: 0px 1px 13px 3px rgba(0,0,0,0.4);
+	-moz-box-shadow: 0px 1px 13px 3px rgba(0,0,0,0.4);
+	box-shadow: 0px 1px 13px 3px rgba(0,0,0,0.4);
 }
 .field-one, .field-two, .search {
 	display: inline;
@@ -95,6 +95,14 @@ body,
 .when, .what, .lookin {
 	font-family: 'Montserrat', sans-serif;
 }
+
+.eventHeading {
+  font-family: 'Montserrat';
+  font-weight: 400;
+  font-size: 20px;
+  color: rgb(99,100,102);
+}
+
 @media only screen and (max-width: 1150px)  {
 	#datePicker {
 		width: 80%;

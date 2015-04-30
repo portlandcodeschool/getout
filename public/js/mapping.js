@@ -69,7 +69,7 @@ var eventModel = Backbone.Model.extend({
 		this.set('visible',true);
 		this.myView = new eventView({model: this});
 
-		var desc = '<h3>' + this.attributes.title + '</h3>';
+		var desc = '<h3 class="eventHeading">' + this.attributes.title + '</h3>';
 		desc+= '<br><strong>Time: </strong>' + this.attributes.startTime;
 		desc+= '<br><strong>Date: </strong>' + this.attributes.date;
 		desc+= '<br><br><strong>Venue: </strong>' + this.attributes.venueName;
