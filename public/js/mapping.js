@@ -83,20 +83,41 @@ var eventModel = Backbone.Model.extend({
 		desc+= '<br><strong>Address: </strong>' + this.attributes.venueAddress;
 		desc+= '<br><br><a href="' + this.attributes.url + '" target="blank">More details ...</a>';
 		this.set('marker', addMarker(this.attributes.lat, this.attributes.lng,desc, matchIcon(this)));
+	},
+	getListHTML: function() {
+		var desc = '<strong>' + this.attributes.title + '</strong><br>' +
+				   this.attributes.startTime + '<br>' +
+				   this.attributes.venueName + '<br>' +
+				   this.attributes.venueAddress; + '<br>'
+		return desc;
+
 	}
 });
 
 
 var eventView = Backbone.View.extend({
 	//el: Table row in list
+	events: {
+		'click': 'markerFocus'
+	},
+	markerFocus: function() {
+		new google.maps.event.trigger( this.model.attributes.marker, 'click' );
+		
+	},
 	initialize: function() {
 		this.model.on('change:visible', this.updateVis, this);
+		this.$el.html(this.model.getListHTML());
+		this.$el.addClass('modelListItem');
+		this.$el.attr('id',this.model.cid);
+		this.$el.appendTo($('#eventList'));
 	},
 	updateVis: function() {
 		if (this.model.attributes.visible) {
 			this.model.attributes.marker.setMap(map);
+			$('#' + this.model.cid).show();
 		} else {
 			this.model.attributes.marker.setMap(null);
+			$('#' + this.model.cid).hide();
 		}
 	}
 });
@@ -122,6 +143,13 @@ var EventCollection = Backbone.Collection.extend({
 			m.set('visible', true);
 		});
 		console.log('markers placed on map..');
+	},
+	searchEvents: function(query) {
+		this.hideAll();
+		this.each(function (m) {
+			if (m.attributes.title.toLowerCase().indexOf(query) > -1)
+				m.set('visible', true);	
+		});
 	},
 	filterEvents: function(catNum) {
 		if (catNum == 9) {
@@ -311,6 +339,17 @@ function getTableRows() {
 
 }
 
+function searchEvents() {
+	var q = $('#searchBox').val().toLowerCase();
+	coll.searchEvents(q);
+
+}
+
+function init() {
+
+	$('#searchBox').bind("change paste keyup", searchEvents);
+	dateSelect();
+}
 
 // var cats = [];
 // coll.models.forEach(function (c) {
