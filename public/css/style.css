@@ -1,11 +1,69 @@
+@import url(http://fonts.googleapis.com/css?family=Montserrat:400,700);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700);
+
 html, 
-body, 
-#map-canvas {
-    height: 400;
-    margin: 0px;
-    padding: 0px
+body {
+  margin: 0px;
+  padding: 0px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.4;
  }
+
 .row {
-	margin-left: 0;
-	margin-right: 0;
+  margin-left: 0;
+  margin-right: 0;
+  width: 100%;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: 'Montserrat';
+  font-weight: 400;
+}
+
+h3 {
+  font-size: 1.5em;
+  color: rgb(43,127,181);
+}
+
+p {
+  color: #333;
+}
+
+#header {
+  height: 80px;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 10px;
+  padding-bottom: 20px;
+}
+
+#header > h1 {
+  font-size: 3em;
+  font-weight: 400;
+  color: rgb(17,63,107);
+  margin-top: 0px;
+}
+
+#map-canvas {
+  /*position: inherit;*/
+  height: 600px;
+  margin: 0px;
+  padding: 0px;
+}
+
+#datePicker {
+  margin-top: 30px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+#datePicker > h5 {
+  font-size: 1.5em;
+  color: rgb(43,127,181);
+}
+
+#eventList {
+
 }
